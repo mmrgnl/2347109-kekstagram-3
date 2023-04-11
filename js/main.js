@@ -1,4 +1,4 @@
-function getRandomInt(min, max) {   // Результат: целое число из диапазона "от...до"
+function getRandom(min, max) {   // Результат: целое число из диапазона "от...до"
   if (min < 0) {
     min = Math.abs(max);
   }
@@ -16,12 +16,13 @@ function getRandomInt(min, max) {   // Результат: целое число
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function stringLength(str, length) {
-  return (str.length === length);
-}// Результат: true, если строка проходит по длине, и false — если не проходит
+function checkMaxLength(string, maxLength) {
+  return string.length <= maxLength;
+}
 
-// eslint-disable-next-line no-console
-console.log(getRandomInt(4, -377.14));
-// eslint-disable-next-line no-console
-console.log(stringLength('Подготовка', 10));
+
+getRandom(15, 25);
+
+checkMaxLength('Hello world!', 255);
+
 
