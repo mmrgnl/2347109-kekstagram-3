@@ -13,4 +13,3 @@ export function renderingPhotoMiniature(photos) {
 
   pictureContainer.appendChild(pictureFragment);
 }
-
