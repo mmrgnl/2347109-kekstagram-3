@@ -1,5 +1,5 @@
 import { getRandom } from './util.js';
-export function generatePhotoData(count) {
+export function generatePhotos(count) {
   const generateSingle = (i) => ({
     id: i,
     url: `photos/${i + 1}.jpg`,

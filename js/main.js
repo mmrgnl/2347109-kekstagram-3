@@ -1,5 +1,5 @@
-import { generatePhotoData } from './data.js';
-import { checkMaxLength } from 'util.js';
+import { generatePhotos} from './data.js';
+import { renderingPhotoMiniature } from './rendering.js';
 
-checkMaxLength('Hello world!', 255);
-generatePhotoData(20);
+const photos = generatePhotos(25);
+renderingPhotoMiniature(photos);
