@@ -1,6 +1,5 @@
-import { generatePhotos} from './data.js';
-
-function generatePhotos(count) {
+import { getRandom } from './util.js';
+export function generatePhotos(count) {
   const generateSingle = (i) => ({
     id: i,
     url: `photos/${i + 1}.jpg`,
@@ -15,7 +14,3 @@ function generatePhotos(count) {
   }
   return photoData;
 }
-
-
-const photos = generatePhotos(25);
-
