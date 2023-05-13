@@ -21,5 +21,5 @@ form.addEventListener('submit', (e) => {
 });
 
 function validateComment(value) {
-  return checkMaxLength(value, 240);
+  return checkMaxLength(value, 240) && !checkMaxLength(value, 19);
 }
