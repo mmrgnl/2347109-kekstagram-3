@@ -1,16 +1,8 @@
-import { getRandom } from './util.js';
-export function generatePhotos(count) {
-  const generateSingle = (i) => ({
-    id: i,
-    url: `photos/${i + 1}.jpg`,
-    description: 'Here is some random string: \'39CDF217\'',
-    likes: getRandom(15, 200),
-    comments: getRandom(0, 200),
-  });
+import { BACKEND_URL } from './form.js';
 
-  const photoData = [];
-  for (let i = 0; i < count; i++) {
-    photoData.push(generateSingle(i));
-  }
-  return photoData;
+export function getPhotos (onSuccess, onError) {
+  fetch(BACKEND_URL)
+    .then((response) => response.json())
+    .then(onSuccess)
+    .catch(onError);
 }
