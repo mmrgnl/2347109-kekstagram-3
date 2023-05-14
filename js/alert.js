@@ -23,4 +23,3 @@ export function showAlert(message) {
 export function showDownloadAlert() {
   showAlert('Couldn\'t download images');
 }
-

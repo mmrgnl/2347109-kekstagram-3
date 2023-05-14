@@ -1,4 +1,4 @@
-import { getLength } from './util.js';
+import { checkMaxLength } from './util.js';
 
 const form = document.querySelector('.img-upload__form');
 
@@ -12,7 +12,7 @@ const pristine  = new Pristine(form, {
 });
 
 pristine.addValidator(form.querySelector('.text__description'),
-  validateComment, 'Длина комментария должна составлять от 20 до 140 символов');
+  validateComment, 'Комментарий должен быть от 20 до 240 символов');
 
 form.addEventListener('submit', (e) => {
   if (!pristine.validate()) {
@@ -21,5 +21,5 @@ form.addEventListener('submit', (e) => {
 });
 
 export function validateComment(value) {
-  return getLength(value, 140) && !getLength(value, 19);
+  return checkMaxLength(value, 240) && !checkMaxLength(value, 19);
 }

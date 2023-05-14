@@ -1,10 +1,10 @@
-
-import { oldEffect } from './effects.js';
 import { validateComment } from './formValidator.js';
-import {openUploadSuccess, openUploadError} from './API.js';
+import { openUploadSuccess, openUploadError } from './API.js';
+import { isEscapeKey } from './util.js';
+import { oldEffect } from './effects.js';
 
 export const BACKEND_URL = 'https://27.javascript.pages.academy/kekstagram-simple';
-export const isEscapeKey = (e) => e.key === 'Escape';
+export const BACKEND_URL_GET = 'https://27.javascript.pages.academy/kekstagram-simple/data';
 
 const image = document.querySelector('.img-upload__preview');
 const hashtag = document.querySelector('.text__hashtags');
@@ -42,29 +42,31 @@ function closeDownloadWindow() {
   cleanForm();
 }
 
-downloadButton.addEventListener('change', () => { openDownloadWindow(); });
 
-cancelButton.addEventListener('click', () => {closeDownloadWindow(); });
+export function addFormListeners() {
+  downloadButton.addEventListener('change', () => { openDownloadWindow(); });
 
-form.addEventListener('submit', async (evt) => {
-  evt.preventDefault();
-  if (!validateComment(comment.value)) {
-    return;
-  }
-  const formData = new FormData(evt.target);
-  try {
-    const response = await fetch(BACKEND_URL, {
-      method: 'POST',
-      body: formData,
-    });
-    if (response.ok) {
-      closeDownloadWindow();
-      openUploadSuccess();
-    } else {
+  cancelButton.addEventListener('click', () => { closeDownloadWindow(); });
+
+  form.addEventListener('submit', async (evt) => {
+    evt.preventDefault();
+    if (!validateComment(comment.value)) {
+      return;
+    }
+    const formData = new FormData(evt.target);
+    try {
+      const response = await fetch(BACKEND_URL, {
+        method: 'POST',
+        body: formData,
+      });
+      if (response.ok) {
+        closeDownloadWindow();
+        openUploadSuccess();
+      } else {
+        openUploadError();
+      }
+    } catch (error) {
       openUploadError();
     }
-  } catch (error) {
-    openUploadError();
-  }
-});
-
+  });
+}
